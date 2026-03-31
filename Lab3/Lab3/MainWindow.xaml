@@ -1,0 +1,109 @@
+﻿<Window x:Class="Lab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab3"
+        mc:Ignorable="d"
+        Height="520" Width="520"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1"
+                   Text="Input Text"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   Margin="0,0,0, 25"/>
+
+        <TextBox Grid.Row="1"
+                 x:Name="InputText"
+                 Height="40"
+                 Margin="0,0,0,15"
+                 FontSize="14"
+                 Padding="5"/>
+
+        <TextBlock Grid.Row="2"
+                   Text="Methods of Encryption"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   Margin="0,10,0,5"/>
+
+        <ComboBox x:Name="CipherBox"
+          Grid.Row="2"
+          Margin="0,30,0,15"
+          Height="35">
+
+            <ComboBoxItem Content="Caesar (shift)"/>
+            <ComboBoxItem Content="Atbash (mirrored)"/>
+            <ComboBoxItem Content="Vigenere (requires the key)"/>
+            <ComboBoxItem Content="XOR (binary)"/>
+            <ComboBoxItem Content="Reverse"/>
+        </ComboBox>
+
+        <TextBlock Grid.Row="3"
+                   Text="Key (if required)"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   Margin="0,10,0,5"/>
+
+        <TextBox x:Name="KeyBox"
+                 Grid.Row="3"
+                 Margin="0,30,0,15"
+                 Height="40"
+                 FontSize="14"
+                 Padding="5"/>
+
+        <StackPanel Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,15">
+
+            <Button Content="Encrypt"
+                    Width="140"
+                    Height="40"
+                    Margin="5"
+                    Background="#4CAF50"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    Click="Encrypt_Click"/>
+
+            <Button Content="Decrypt"
+                    Width="140"
+                    Height="40"
+                    Margin="5"
+                    Background="#2196F3"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    Click="Decrypt_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="5"
+                   Text="Result"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   Margin="0,10,0,5"/>
+
+        <TextBox x:Name="OutputText"
+                 Grid.Row="4"
+                 Margin="0,30,0,0"
+                 FontSize="14"
+                 Height="120"
+                 Padding="10"
+                 TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto"
+                 IsReadOnly="True"
+                 Background="White"/>
+
+    </Grid>
+    
+</Window>
