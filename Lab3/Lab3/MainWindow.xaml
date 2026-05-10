@@ -19,25 +19,27 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Input Text"
+        <TextBlock Grid.Row="1"
+                   Text="Input Text"
                    FontSize="14"
                    FontWeight="Bold"
-                   Margin="0,0,0,5"/>
+                   Margin="0,0,0, 25"/>
 
-        <TextBox x:Name="InputText"
+        <TextBox Grid.Row="1"
+                 x:Name="InputText"
                  Height="40"
                  Margin="0,0,0,15"
                  FontSize="14"
                  Padding="5"/>
 
-        <TextBlock Grid.Row="1"
+        <TextBlock Grid.Row="2"
                    Text="Methods of Encryption"
                    FontSize="14"
                    FontWeight="Bold"
                    Margin="0,10,0,5"/>
 
         <ComboBox x:Name="CipherBox"
-          Grid.Row="1"
+          Grid.Row="2"
           Margin="0,30,0,15"
           Height="35">
 
@@ -46,24 +48,22 @@
             <ComboBoxItem Content="Vigenere (requires the key)"/>
             <ComboBoxItem Content="XOR (binary)"/>
             <ComboBoxItem Content="Reverse"/>
-            <ComboBoxItem Content="Vernam"/>
-            <ComboBoxItem Content="RSA (simple)"/>
         </ComboBox>
 
-        <TextBlock Grid.Row="2"
+        <TextBlock Grid.Row="3"
                    Text="Key (if required)"
                    FontSize="14"
                    FontWeight="Bold"
                    Margin="0,10,0,5"/>
 
         <TextBox x:Name="KeyBox"
-                 Grid.Row="2"
+                 Grid.Row="3"
                  Margin="0,30,0,15"
                  Height="40"
                  FontSize="14"
                  Padding="5"/>
 
-        <StackPanel Grid.Row="3"
+        <StackPanel Grid.Row="4"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Margin="0,15">
@@ -87,7 +87,7 @@
                     Click="Decrypt_Click"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="4"
+        <TextBlock Grid.Row="5"
                    Text="Result"
                    FontSize="14"
                    FontWeight="Bold"

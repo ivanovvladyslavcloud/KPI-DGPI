@@ -51,12 +51,6 @@ namespace Lab3
                 case "Reverse":
                     return Reverse(text);
 
-                case "Vernam":
-                    return Vernam(text, key);
-
-                case "RSA (simple)":
-                    return RSA(text, encrypt);
-
                 default:
                     return text;
             }
@@ -88,6 +82,9 @@ namespace Lab3
 
         private string Vigenere(string text, string key, bool encrypt)
         {
+            if (string.IsNullOrEmpty(key))
+                return text;
+
             var result = new StringBuilder();
             int j = 0;
 
@@ -99,10 +96,16 @@ namespace Lab3
                     continue;
                 }
 
-                int shift = key[j % key.Length] - 'a';
+                bool isUpper = char.IsUpper(c);
+                char baseChar = isUpper ? 'A' : 'a';
+
+                int shift = char.ToLower(key[j % key.Length]) - 'a';
                 if (!encrypt) shift = -shift;
 
-                result.Append((char)(c + shift));
+                int baseVal = c - baseChar;
+                int newChar = (baseVal + shift + 26) % 26;
+
+                result.Append((char)(newChar + baseChar));
                 j++;
             }
 
@@ -127,78 +130,6 @@ namespace Lab3
             Array.Reverse(arr);
             return new string(arr);
         }
-
-        private string Vernam(string text, string key)
-        {
-            if (string.IsNullOrEmpty(key))
-                return text;
-
-            var result = new StringBuilder();
-
-            for (int i = 0; i < text.Length; i++)
-            {
-                result.Append((char)(text[i] ^ key[i % key.Length]));
-            }
-
-            return result.ToString();
-        }
-
-        private string RSA(string text, bool encrypt)
-        {
-            int p = 61;
-            int q = 53;
-            int n = p * q;     // 3233
-            int e = 17;
-            int d = 2753;
-
-            if (encrypt)
-            {
-                var result = new List<int>();
-
-                foreach (char c in text)
-                {
-                    int m = c;
-                    int enc = ModPow(m, e, n);
-                    result.Add(enc);
-                }
-
-                return string.Join(" ", result);
-            }
-            else
-            {
-                var parts = text.Split(' ');
-                var result = new StringBuilder();
-
-                foreach (var part in parts)
-                {
-                    if (int.TryParse(part, out int num))
-                    {
-                        int dec = ModPow(num, d, n);
-                        result.Append((char)dec);
-                    }
-                }
-
-                return result.ToString();
-            }
-        }
-
-        private int ModPow(int baseVal, int exp, int mod)
-        {
-            long result = 1;
-            long b = baseVal;
-
-            while (exp > 0)
-            {
-                if ((exp & 1) == 1)
-                    result = (result * b) % mod;
-
-                b = (b * b) % mod;
-                exp >>= 1;
-            }
-
-            return (int)result;
-        }
-
 
     }
 }
